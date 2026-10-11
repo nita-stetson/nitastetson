@@ -1,0 +1,165 @@
+/* ---------- Nita Stetson — starter portfolio ----------
+   Edit the colors and fonts here and every page updates. */
+
+:root {
+  --paper: #ebe5d6;
+  --paper-dark: #ddd5c1;
+  --ink: #1a1816;
+  --muted: #6b645a;
+  --accent: #a3271f;      /* oxblood — change me */
+  --tape: rgba(214, 190, 120, 0.55);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "Space Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  /* photocopy grain */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+
+/* ---------- layout ---------- */
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+header.site {
+  border-bottom: 2px solid var(--ink);
+  padding: 18px 0 14px;
+}
+header.site .wrap {
+  display: flex; flex-wrap: wrap; gap: 10px 24px;
+  align-items: baseline; justify-content: space-between;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-style: italic; font-weight: 600;
+  font-size: 1.7rem; text-decoration: none; letter-spacing: -0.5px;
+}
+nav.site ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+nav.site a {
+  text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px;
+  text-decoration: none; padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+nav.site a:hover, nav.site a[aria-current="page"] {
+  border-bottom-color: var(--accent); color: var(--ink);
+}
+
+main { padding: 48px 0 80px; }
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700; font-style: italic;
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  line-height: 1.02; letter-spacing: -1.5px;
+  margin-bottom: 18px;
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 600; margin: 40px 0 10px;
+}
+.label {
+  font-size: 0.74rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--accent); margin-bottom: 10px; display: block;
+}
+.lede { max-width: 56ch; font-size: 1.02rem; margin-bottom: 28px; }
+.note { color: var(--muted); font-size: 0.82rem; max-width: 60ch; }
+
+/* ---------- home ---------- */
+.hero { padding: 36px 0 20px; }
+.hero h1 .hl {
+  background: linear-gradient(transparent 58%, rgba(163, 39, 31, 0.28) 58%);
+}
+.rooms {
+  list-style: none; margin-top: 36px;
+  border-top: 2px solid var(--ink);
+}
+.rooms li { border-bottom: 1px solid var(--ink); }
+.rooms a {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 16px; padding: 16px 4px; text-decoration: none;
+  transition: padding-left 0.15s ease, background 0.15s ease;
+}
+.rooms a:hover { padding-left: 14px; background: var(--paper-dark); color: var(--ink); }
+.rooms .room {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  font-weight: 600; font-style: italic;
+}
+.rooms .what { font-size: 0.78rem; color: var(--muted); text-align: right; }
+
+/* ---------- galleries ---------- */
+.grid {
+  display: grid; gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-top: 28px;
+}
+.piece { position: relative; background: #f6f1e4; padding: 10px 10px 14px; box-shadow: 2px 3px 0 rgba(26,24,22,0.18); }
+.piece:nth-child(odd)  { transform: rotate(-1.2deg); }
+.piece:nth-child(even) { transform: rotate(0.9deg); }
+.piece:nth-child(3n)   { transform: rotate(-0.4deg); }
+.piece::before {         /* tape */
+  content: ""; position: absolute; top: -10px; left: 50%;
+  width: 84px; height: 22px; margin-left: -42px;
+  background: var(--tape); transform: rotate(-3deg);
+}
+.piece img, .piece .ph { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.piece .ph {
+  background: repeating-linear-gradient(45deg, var(--paper-dark), var(--paper-dark) 8px, #d3cab4 8px, #d3cab4 16px);
+  display: grid; place-items: center; color: var(--muted); font-size: 0.78rem;
+}
+.piece.wide img, .piece.wide .ph { aspect-ratio: 16 / 10; }
+.piece figcaption { font-size: 0.78rem; margin-top: 8px; color: var(--muted); }
+.piece figcaption b { color: var(--ink); font-weight: 700; }
+
+/* ---------- writing / lists ---------- */
+.entries { list-style: none; margin-top: 18px; border-top: 2px solid var(--ink); }
+.entries li { border-bottom: 1px solid var(--ink); padding: 18px 0; }
+.entries .meta { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+.entries .title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; display: block; margin: 2px 0 4px; }
+
+/* ---------- music ---------- */
+.release {
+  display: grid; grid-template-columns: minmax(180px, 280px) 1fr; gap: 30px;
+  align-items: start; margin-top: 24px;
+}
+.release .cover {
+  aspect-ratio: 1 / 1; background: var(--ink); color: var(--paper);
+  display: grid; place-items: center; text-align: center; padding: 20px;
+  font-family: var(--font-display); font-style: italic; font-size: 1.4rem;
+  box-shadow: 4px 4px 0 var(--accent);
+}
+.tracks { list-style: none; counter-reset: t; margin: 14px 0; }
+.tracks li { counter-increment: t; padding: 8px 0; border-bottom: 1px dashed var(--muted); }
+.tracks li::before { content: counter(t, decimal-leading-zero) "  "; color: var(--accent); }
+.btn {
+  display: inline-block; margin: 6px 8px 0 0; padding: 8px 16px;
+  border: 2px solid var(--ink); text-decoration: none;
+  text-transform: uppercase; font-size: 0.76rem; letter-spacing: 1.5px;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+@media (max-width: 640px) { .release { grid-template-columns: 1fr; } }
+
+/* ---------- footer ---------- */
+footer.site {
+  border-top: 2px solid var(--ink); padding: 20px 0 40px;
+  font-size: 0.78rem; color: var(--muted);
+}
+footer.site .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rooms a { transition: none; }
+}
